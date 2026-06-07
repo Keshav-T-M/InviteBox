@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation – Harshakiran & Nithyashree</title>
+<meta property="og:title" content="You're Invited: Wedding of Harshakiran & Nithyashree">
+<meta property="og:description" content="Join us on 21 June 2026 at Sri Gurusiddarameshwara Samudaya Bhavana.">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Anek+Kannada:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --gold:#C9975A;--gold2:#EEC219;--gold3:#F5E6C8;--gold4:#FFF8E7;
+  --red:#8B1A1A;--red2:#5C1010;--red3:#A52020;
+  --ivory:#FDF6E3;--cream:#F0E4C2;--dark:#2C1810;--mid:#5A3B2A;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background: var(--dark);
+  background-image: repeating-linear-gradient(45deg, #2C1810 0, #2C1810 2px, #3A2218 2px, #3A2218 4px);
+  color:var(--dark);
+  font-family:'Montserrat',Georgia,serif;
+  overflow-x:hidden;
+}
+
+/* ═══ SPLASH SCREEN (CURTAINS) ═══ */
+#splashContent{
+  position:fixed;inset:0;z-index:10000;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:16px;pointer-events:none;
+  transition:opacity 0.6s ease;
+}
+body.open #splashContent{opacity:0}
+.splash-mono{
+  font-family:'Great Vibes',cursive;font-size:clamp(3rem,8vw,5rem);
+  color:var(--gold3);
+  text-shadow:0 0 40px rgba(201,151,90,0.5),0 0 80px rgba(201,151,90,0.2);
+  animation:floatMono 4s ease-in-out infinite;
+}
+@keyframes floatMono{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.splash-sub{
+  font-size:0.55rem;letter-spacing:0.5em;color:rgba(245,230,200,0.6);
+  font-family:'Montserrat',sans-serif;text-transform:uppercase;
+}
+.splash-tap{
+  margin-top:24px;
+  font-size:0.65rem;letter-spacing:0.3em;
+  color:rgba(245,230,200,0.5);
+  font-family:'Montserrat',sans-serif;text-transform:uppercase;
+  animation:tapBlink 2s ease-in-out infinite;
+  border:1px solid rgba(201,151,90,0.4);
+  padding:12px 28px;border-radius:2px;
+  pointer-events:auto;cursor:pointer;
+  background:rgba(0,0,0,0.2);
+}
+@keyframes tapBlink{0%,100%{opacity:0.4}50%{opacity:1}}
+
+#curtL,#curtR{
+  position:fixed;top:0;bottom:0;width:50%;z-index:9999;
+  transition:transform 1.4s cubic-bezier(0.76,0,0.24,1);
+}
+#curtL{
+  left:0;
+  background:linear-gradient(135deg,#4A0D0D,#8B1A1A);
+  background-image:linear-gradient(135deg,#4A0D0D,#8B1A1A),repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(255,255,255,0.02) 3px,rgba(255,255,255,0.02) 4px);
+}
+#curtR{
+  right:0;
+  background:linear-gradient(225deg,#4A0D0D,#8B1A1A);
+  background-image:linear-gradient(225deg,#4A0D0D,#8B1A1A),repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(255,255,255,0.02) 3px,rgba(255,255,255,0.02) 4px);
+}
+body.open #curtL{transform:translateX(-100%)}
+body.open #curtR{transform:translateX(100%)}
+
+#curtL::after,#curtR::after{
+  content:'';position:absolute;top:20%;bottom:20%;
+  border-right:0.5px solid rgba(201,151,90,0.15);right:1px;
+}
+
+/* ═══ CANVAS & AUDIO ═══ */
+#petalCanvas{
+  position:fixed;inset:0;pointer-events:none;z-index:1;
+  opacity:0;transition:opacity 2s ease 0.5s;
+}
+body.open #petalCanvas{opacity:1}
+
+#audioBtn{
+  position:fixed;bottom:24px;right:24px;z-index:100;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--red);border:1.5px solid var(--gold);
+  color:var(--gold3);font-size:1.1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(139,26,26,0.5);
+  opacity:0;transition:opacity 0.6s ease 2s,transform 0.2s;
+}
+body.open #audioBtn{opacity:1}
+#audioBtn:hover{transform:scale(1.1)}
+
+/* ═══ MAIN CLASSY CARD ═══ */
+main{
+  position:relative; z-index:10;
+  max-width:700px; margin: 40px auto; padding: 60px 30px;
+  background: var(--ivory);
+  background-image: 
+    radial-gradient(circle at top right, rgba(201,151,90,0.05), transparent 60%),
+    radial-gradient(circle at bottom left, rgba(201,151,90,0.05), transparent 60%);
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 5px 15px rgba(0,0,0,0.4);
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 1.2s ease 1s, transform 1.2s ease 1s;
+  text-align: center;
+}
+body.open main {opacity: 1; transform: translateY(0);}
+main::before {content: ''; position: absolute; inset: 12px; border: 1px solid var(--gold); border-radius: 4px; pointer-events: none;}
+main::after {content: ''; position: absolute; inset: 18px; border: 0.5px dashed rgba(201,151,90,0.5); border-radius: 2px; pointer-events: none;}
+
+/* Typography & Titles */
+.card-kicker { font-family: 'Anek Kannada', sans-serif; font-size: 1rem; color: var(--red); margin-bottom: 15px; font-weight: 600; }
+.card-symbol { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; text-shadow: 0 0 10px rgba(201,151,90,0.3); }
+h1 {
+  font-family: 'Great Vibes', cursive; font-size: clamp(3rem, 8vw, 4.5rem); line-height: 1.1; margin-bottom: 20px;
+  background: linear-gradient(135deg, #7A5C10 5%, #C9975A 25%, #EEC219 48%, #FFFAE0 52%, #EEC219 56%, #C9975A 75%, #7A5C10 95%);
+  background-size: 300% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  animation: goldShimmer 5s linear infinite;
+}
+
+@keyframes goldShimmer{to{background-position:300% center}}
+.card-subtitle { font-family: 'Playfair Display', serif; font-size: 1rem; font-style: italic; color: var(--mid); line-height: 1.6; max-width: 80%; margin: 0 auto 30px; }
+
+/* Detail Grid */
+.detail-grid { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; border-top: 1px solid rgba(201,151,90,0.3); border-bottom: 1px solid rgba(201,151,90,0.3); padding: 20px 0; }
+.detail { display: flex; flex-direction: column; align-items: center; }
+.detail span { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--mid); margin-bottom: 5px; }
+.detail strong { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--red); font-weight: 600; }
+
+/* Countdown */
+.countdown { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px; }
+.cd-unit { display: flex; flex-direction: column; background: rgba(139,26,26,0.05); border: 1px solid rgba(201,151,90,0.3); padding: 10px 15px; border-radius: 4px; min-width: 65px; }
+.cd-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--red); line-height: 1; margin-bottom: 4px; }
+.cd-unit em { font-style: normal; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); }
+.cd-sep { font-size: 1.5rem; color: var(--gold); font-family: 'Playfair Display', serif; }
+
+/* Section Headers */
+section { margin-top: 50px; }
+h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--red); margin-bottom: 25px; position: relative; display: inline-block; }
+h2::after { content: '🌸'; display: block; font-size: 1rem; margin-top: 8px; opacity: 0.7; }
+
+/* Blessings */
+.blessings p { font-family: 'Playfair Display', serif; font-size: 1.05rem; line-height: 1.8; color: var(--dark); max-width: 85%; margin: 0 auto; }
+
+/* Photo Float Grid */
+.photo-float-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; padding: 20px 0; }
+.photo-frame { 
+  background: white; padding: 12px 12px 45px 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+  border-radius: 2px; border: 1px solid #eee; position: relative; transition: transform 0.3s ease; 
+}
+.photo-frame:hover { z-index: 10; transform: scale(1.05) translateY(-5px); }
+.photo-frame img { width: 150px; height: 200px; object-fit: cover; border-radius: 2px; }
+.photo-label { position: absolute; bottom: 15px; left: 0; right: 0; font-family: 'Great Vibes', cursive; font-size: 1.4rem; color: var(--red); }
+.frame-tilt-left { transform: rotate(-6deg); }
+.frame-center { transform: translateY(-15px); z-index: 2; }
+.frame-tilt-right { transform: rotate(6deg); }
+
+/* Timeline Schedule */
+.timeline { max-width: 450px; margin: 30px auto 0; text-align: left; position: relative; padding-left: 30px; border-left: 1.5px solid rgba(201,151,90,0.4); }
+.timeline-item { position: relative; margin-bottom: 35px; }
+.tl-dot { position: absolute; left: -36px; top: 0; width: 11px; height: 11px; background: var(--ivory); border: 2px solid var(--red); border-radius: 50%; box-shadow: 0 0 0 4px var(--ivory); }
+.tl-content strong { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--red); display: block; margin-bottom: 3px; }
+.tl-content span { font-size: 0.75rem; color: var(--gold); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 8px; }
+.tl-content p { font-size: 0.85rem; color: var(--mid); line-height: 1.5; font-style: italic; }
+
+/* Map & Venue Area */
+.venue-address { font-size: 0.9rem; color: var(--mid); margin-top: 15px; line-height: 1.6; }
+.map-container { width: 100%; margin: 20px 0; border: 1px solid rgba(201,151,90,0.4); border-radius: 4px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.map-container iframe { width: 100%; height: 250px; border: none; }
+.card-actions { margin-top: 30px; display: flex; justify-content: center; gap: 15px; }
+.card-button { 
+  display: inline-block; padding: 12px 28px; background: var(--ivory); border: 1px solid var(--gold); 
+  color: var(--mid); font-family: 'Montserrat', sans-serif; font-size: 0.7rem; text-transform: uppercase; 
+  letter-spacing: 0.15em; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease; border-radius: 2px;
+}
+.card-button.primary { background: var(--gold); color: var(--red2); border-color: var(--gold); }
+.card-button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(201,151,90,0.2); }
+.card-button.primary:hover { background: var(--gold2); }
+
+/* Animation Utility */
+.js-animate { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.js-animate.vis { opacity: 1; transform: translateY(0); }
+
+/* Responsive adjustments */
+@media(max-width: 600px){
+  main { padding: 40px 20px; margin: 20px; }
+  .detail-grid { flex-direction: column; gap: 20px; }
+  .cd-unit { padding: 8px 10px; min-width: 55px; }
+  .cd-num { font-size: 1.4rem; }
+  .photo-frame img { width: 120px; height: 160px; }
+  .photo-float-grid { gap: 10px; }
+  .card-actions { flex-direction: column; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- CURTAIN LEFT & RIGHT -->
+<div id="curtL"></div>
+<div id="curtR"></div>
+
+<!-- SPLASH CONTENT -->
+<div id="splashContent">
+  <div class="splash-mono">H &amp; N</div>
+  <div class="splash-sub">A Wedding Celebration</div>
+  <div class="splash-tap" onclick="openCard()">✦ Open Invitation ✦</div>
+</div>
+
+<!-- Petal canvas -->
+<canvas id="petalCanvas"></canvas>
+
+<!-- Audio Button -->
+<button id="audioBtn" onclick="toggleAudio()">🎵</button>
+
+<!-- ══════ MAIN CARD CONTENT ══════ -->
+<main class="card-stage">
+  <article class="wedding-card">
+    
+    <!-- Header Elements -->
+    <p class="card-kicker js-animate">ಶ್ರೀ ಮಲ್ಲೇಶ್ವರಸ್ವಾಮಿ ಪ್ರಸನ್ನ || ಶ್ರೀ ಪಾರ್ವತಮ್ಮದೇವಿ ಕೃಪೆ ||<br>ಮದುವೆಯ ಮಮತೆಯ ಕರೆಯೋಲೆ</p>
+    <div class="card-symbol js-animate" aria-hidden="true">ॐ</div>
+    
+    <h1 id="invite-title" class="js-animate">Harshakiran &amp; Nithyashree</h1>
+    <p class="card-subtitle js-animate">With auspicious blessings, our families invite you to witness sacred vows and joyful traditions.</p>
+    
+    <!-- Detail Grid -->
+    <div class="detail-grid js-animate">
+      <div class="detail"><span>Date</span><strong>21 June 2026</strong></div>
+      <div class="detail"><span>Muhurtham</span><strong>10:50 AM</strong></div>
+      <div class="detail"><span>Venue</span><strong>Samudaya Bhavana</strong></div>
+    </div>
+    
+    <!-- Countdown -->
+    <div class="countdown js-animate" aria-label="Countdown to wedding">
+      <div class="cd-unit"><span class="cd-num" id="cD">00</span><em>Days</em></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cH">00</span><em>Hours</em></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cM">00</span><em>Mins</em></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cS">00</span><em>Secs</em></div>
+    </div>
+    
+    <!-- Blessings Section -->
+    <section class="blessings js-animate">
+      <h2>With the blessings of</h2>
+      <p>Smt. Nalina &amp; Sri Mallikarjunaiah<br><i>(Parents of the Groom)</i><br><br>Smt. Sukanya &amp; Sri Shankarayya<br><i>(Parents of the Bride)</i></p>
+    </section>
+    
+    <!-- Photo Section -->
+    <section class="prewedding js-animate">
+      <h2>Our Moments</h2>
+      <div class="photo-float-grid">
+        <div class="photo-frame frame-tilt-left">
+          <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=200&h=260&fit=crop" alt="Couple portrait 1" loading="lazy">
+          <span class="photo-label">Together ♥</span>
+        </div>
+        <div class="photo-frame frame-center">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=200&h=260&fit=crop" alt="Couple portrait 2" loading="lazy">
+          <span class="photo-label">Forever ♥</span>
+        </div>
+        <div class="photo-frame frame-tilt-right">
+          <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=200&h=300&fit=crop" alt="Couple portrait 3" loading="lazy">
+          <span class="photo-label">Always ♥</span>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Schedule Timeline Section -->
+    <section class="schedule js-animate" aria-labelledby="schedule-title">
+      <h2 id="schedule-title">Wedding Schedule</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <strong>Prathamashastra / Reception</strong>
+            <span>20 June 2026 · Evening 6:30 PM</span>
+            <p>Join us for dinner, music, and celebrations ahead of our big day.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <strong>Vivaha Mahotsava (Muhurtham)</strong>
+            <span>21 June 2026 · 10:50 AM - 11:50 AM</span>
+            <p>The sacred union and tying of the Mangalsutra.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <strong>Lunch Banquet</strong>
+            <span>21 June 2026 · 12:30 PM Onwards</span>
+            <p>A traditional grand feast to celebrate with our loved ones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Map Section -->
+    <section class="js-animate">
+      <h2>Venue Details</h2>
+      <p class="venue-address">
+        <b>Sri Gurusiddarameshwara Samudaya Bhavana</b><br>
+        N.H. 206, Heruru, Gubbi Taluk.
+      </p>
+      
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1833.6572309599655!2d76.92345614785094!3d13.308796638704715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb0240f6c73f4a7%3A0x22dcc0f726642fa8!2sSri%20Guru%20Siddarameshwara%20samudhaya%20Bhavana!5e1!3m2!1sen!2sin!4v1780826668574!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      
+      <div class="card-actions">
+        <a class="card-button primary" href="https://maps.app.goo.gl/2kK2kCjX4R3Y8W5H8" target="_blank" rel="noopener">📍 Open Maps App</a>
+      </div>
+    </section>
+    
+    <p style="margin-top:50px; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--mid); text-transform: uppercase;">
+      🌿 Eco-Friendly Digital Invitation 🌿
+    </p>
+
+  </article>
+</main>
+
+<script>
+// ── OPEN CARD ──
+function openCard(){
+  document.body.classList.add('open');
+  startCountdown();
+  startPetals();
+  setTimeout(setupReveal,1200);
+}
+
+// ── COUNTDOWN ──
+function startCountdown(){
+  const t=new Date('2026-06-21T10:50:00');
+  const tick=()=>{
+    const d=t-Date.now();
+    if(d<0){document.getElementById('cD').textContent='00';return}
+    document.getElementById('cD').textContent=String(Math.floor(d/86400000)).padStart(2,'0');
+    document.getElementById('cH').textContent=String(Math.floor((d%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cM').textContent=String(Math.floor((d%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cS').textContent=String(Math.floor((d%60000)/1000)).padStart(2,'0');
+  };
+  tick();setInterval(tick,1000);
+}
+
+// ── PETAL CANVAS ──
+function startPetals(){
+  const cv=document.getElementById('petalCanvas');
+  const cx=cv.getContext('2d');
+  let W,H,pets=[];
+  const resize=()=>{W=cv.width=window.innerWidth;H=cv.height=window.innerHeight};
+  resize();window.addEventListener('resize',resize);
+
+  const op=document.createElement('canvas');op.width=14;op.height=8;
+  const oc=op.getContext('2d');
+  oc.beginPath();oc.moveTo(7,0);oc.bezierCurveTo(14,0,14,5,7,7);oc.bezierCurveTo(0,5,0,0,7,0);
+  oc.fillStyle='rgba(201,151,90,0.8)';oc.fill();
+
+  const ob=document.createElement('canvas');ob.width=50;ob.height=50;
+  const obc=ob.getContext('2d');
+  const g=obc.createRadialGradient(25,25,0,25,25,25);
+  g.addColorStop(0,'rgba(238,194,25,0.15)');g.addColorStop(1,'rgba(238,194,25,0)');
+  obc.fillStyle=g;obc.arc(25,25,25,0,Math.PI*2);obc.fill();
+
+  const mkp=()=>({
+    x:Math.random()*W,y:-15,
+    vx:(Math.random()-.5)*.7,vy:.5+Math.random()*1.2,
+    r:Math.random()*Math.PI*2,rv:(Math.random()-.5)*.035,
+    sc:.5+Math.random()*.9,sw:Math.random()*Math.PI*2,
+    ss:.01+Math.random()*.02,al:.3+Math.random()*.4,
+    t:Math.random()>.7?'b':'p'
+  });
+
+  for(let i=0;i<30;i++){const p=mkp();p.y=Math.random()*H;pets.push(p)}
+
+  let fr=0;
+  (function loop(){
+    cx.clearRect(0,0,W,H);fr++;
+    if(fr%4===0&&pets.length<65)pets.push(mkp());
+    pets=pets.filter(p=>p.y<H+20);
+    for(const p of pets){
+      p.sw+=p.ss;p.x+=p.vx+Math.sin(p.sw)*.45;p.y+=p.vy;p.r+=p.rv;
+      cx.save();cx.globalAlpha=p.al;
+      if(p.t==='b'){cx.drawImage(ob,p.x-25,p.y-25,50,50)}
+      else{cx.translate(p.x,p.y);cx.rotate(p.r);cx.scale(p.sc,p.sc);cx.drawImage(op,-7,-4,14,8)}
+      cx.restore();
+    }
+    requestAnimationFrame(loop);
+  })();
+}
+
+// ── SCROLL REVEAL (FADE IN EFFECTS) ──
+function setupReveal(){
+  const obs=new IntersectionObserver(en=>{
+    en.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('vis');
+        obs.unobserve(e.target); // Stop observing once it fades in
+      }
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('.js-animate').forEach(el=>obs.observe(el));
+}
+
+// ── AUDIO ──
+let aud,audOn=false;
+function toggleAudio(){
+  const btn=document.getElementById('audioBtn');
+  if(!aud){aud=new Audio();aud.loop=true;aud.volume=0.4}
+  if(audOn){aud.pause();audOn=false;btn.textContent='🎵'}
+  else{aud.play().catch(()=>{});audOn=true;btn.textContent='🔇'}
+}
+</script>
+</body>
+</html>
